@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Quince Años Cowboy Chic - Ximena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --purple-night: #1a0a2e;
+            --purple-deep: #2d1454;
+            --purple-royal: #5a2d82;
+            --purple-mid: #8b5fbf;
+            --purple-soft: #c4a0e0;
+            --purple-mist: #ede4f7;
+            --lavender: #d4b8f0;
+            --cream: #faf6f0;
+            --sand: #e8dfd0;
+            --rose-gold: #c9a66b;
+            --copper: #9a6b45;
+            --shadow: 0 16px 40px rgba(26, 10, 46, 0.18);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--purple-night);
+            color: var(--purple-deep);
+            overflow-x: hidden;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0,0,0,0.5);
+        }
+
+        .western-title {
+            font-family: 'Rye', serif;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .elegant-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+        }
+
+        /* ── FONDO GLOBAL ANIMADO ── */
+        .bg-animation-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .dust-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196,160,224,0.7) 0%, transparent 70%);
+            animation: dustDrift linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes dustDrift {
+            0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10%  { opacity: 0.5; }
+            90%  { opacity: 0.3; }
+            100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+        }
+
+        .float-western {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            animation: westernFloat linear infinite;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
+        }
+
+        .float-western svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0.35;
+        }
+
+        @keyframes westernFloat {
+            0%   { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            8%   { opacity: 0.14; }
+            92%  { opacity: 0.12; }
+            100% { transform: translateY(-8vh) rotate(20deg); opacity: 0; }
+        }
+
+        /* ── DECORACIÓN VAQUERA TRANSPARENTE ── */
+        .western-decor-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .western-glyph {
+            position: absolute;
+            pointer-events: none;
+            color: var(--purple-royal);
+            opacity: 0.11;
+        }
+
+        .western-glyph.gold { color: var(--copper); }
+        .western-glyph.light { color: var(--purple-soft); opacity: 0.18; }
+        .western-glyph.cream { color: var(--cream); opacity: 0.14; }
+
+        .western-glyph svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .western-glyph.sway {
+            animation: westernSway 7s ease-in-out infinite;
+        }
+
+        .western-glyph.sway-slow {
+            animation: westernSway 11s ease-in-out infinite;
+        }
+
+        .western-glyph.sway-reverse {
+            animation: westernSwayRev 9s ease-in-out infinite;
+        }
+
+        .western-glyph.drift {
+            animation: westernDrift 14s ease-in-out infinite;
+        }
+
+        @keyframes westernSway {
+            0%, 100% { transform: rotate(-3deg) translateY(0); }
+            50%      { transform: rotate(3deg) translateY(-10px); }
+        }
+
+        @keyframes westernSwayRev {
+            0%, 100% { transform: rotate(3deg) translateY(0); }
+            50%      { transform: rotate(-3deg) translateY(-8px); }
+        }
+
+        @keyframes westernDrift {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.1; }
+            50%      { transform: translateY(-14px) translateX(6px); opacity: 0.16; }
+        }
+
+        .hero-section .western-glyph { opacity: 0.22; }
+        .hero-section .western-glyph.light { opacity: 0.28; }
+
+        .countdown-section .western-glyph {
+            color: var(--lavender);
+            opacity: 0.1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── HERO: ATARDECER VAQUERO MORADO ── */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            background:
+                url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=900&q=80') center/cover no-repeat;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to   { transform: scale(1.12); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(26, 10, 46, 0.55) 0%,
+                rgba(45, 20, 84, 0.75) 35%,
+                rgba(90, 45, 130, 0.85) 65%,
+                rgba(26, 10, 46, 0.95) 100%
+            );
+        }
+
+        .stars-layer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50%      { opacity: 1; transform: scale(1.5); }
+        }
+
+        .desert-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            width: 100%;
+            padding: 24px 24px 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-4vh);
+        }
+
+        .rope-frame {
+            position: relative;
+            width: 90%;
+            max-width: 360px;
+            margin: 0 auto;
+            padding: 50px 28px 40px;
+            border: 3px solid transparent;
+            border-image: repeating-linear-gradient(
+                90deg,
+                var(--rose-gold) 0px, var(--rose-gold) 8px,
+                transparent 8px, transparent 12px
+            ) 3;
+            background: rgba(26, 10, 46, 0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 0 40px rgba(139,95,191,0.1);
+        }
+
+        .rope-frame::before,
+        .rope-frame::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--rose-gold);
+            opacity: 0.6;
+        }
+        .rope-frame::before { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .rope-frame::after  { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+        .horseshoe-accent {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            opacity: 0.85;
+        }
+
+        .hero-section .intro-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            color: var(--lavender);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 12px;
+        }
+
+        .hero-section .name-glitter {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5.5rem;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: 6px;
+            text-shadow: 0 0 30px rgba(196,160,224,0.5), 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .hero-section .subtitle {
+            font-size: 1rem;
+            color: var(--rose-gold);
+            letter-spacing: 8px;
+            margin-bottom: 8px;
+        }
+
+        .hero-tagline {
+            font-size: 0.75rem;
+            color: var(--purple-soft);
+            letter-spacing: 3px;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .premium-player {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(201,166,107,0.35);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .player-btn-play {
+            background: linear-gradient(135deg, var(--rose-gold), var(--copper));
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(201,166,107,0.4);
+            flex-shrink: 0;
+        }
+
+        .player-info-box { flex: 1; text-align: left; }
+        .player-info-box p {
+            font-size: 0.6rem;
+            color: var(--purple-soft);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .player-info-box h4 {
+            font-size: 0.78rem;
+            color: var(--cream);
+            font-weight: 500;
+        }
+
+        /* ── DIVISOR DE CUERDA ── */
+        .rope-divider {
+            display: block;
+            width: 100%;
+            height: 28px;
+            opacity: 0.5;
+        }
+
+        /* ── SECCIONES ── */
+        .section-with-texture {
+            position: relative;
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .section-with-texture::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5fbf' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .date-section {
+            padding: 65px 25px 70px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-ornament {
+            width: 60px;
+            margin: 0 auto 15px;
+            opacity: 0.7;
+        }
+
+        .section-title-handwritten {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: var(--purple-royal);
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--copper);
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .chic-date-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .date-element-side {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--purple-mid);
+            font-weight: 600;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--rose-gold);
+            min-width: 80px;
+        }
+
+        .date-element-center {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            font-weight: 600;
+            color: var(--purple-deep);
+            line-height: 1;
+        }
+
+        .premium-calendar {
+            background: white;
+            padding: 28px 22px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--purple-mist);
+            max-width: 330px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .premium-calendar::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: 20px; right: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+            border-radius: 2px;
+        }
+
+        .calendar-header-month {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 5px;
+            color: var(--purple-royal);
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+
+        .calendar-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px 4px;
+            font-size: 0.82rem;
+        }
+
+        .day-headline {
+            font-weight: 700;
+            color: var(--purple-mid);
+            padding-bottom: 6px;
+            font-size: 0.75rem;
+        }
+
+        .grid-cell-day {
+            height: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--purple-deep);
+            position: relative;
+        }
+
+        .grid-cell-day.marked-date {
+            color: white;
+            font-weight: 700;
+        }
+
+        .grid-cell-day.marked-date::before {
+            content: '';
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--purple-royal), var(--purple-mid));
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(90,45,130,0.4);
+            z-index: 0;
+        }
+
+        .grid-cell-day.marked-date span { position: relative; z-index: 1; }
+
+        /* ── FAMILIA ── */
+        .family-section {
+            padding: 55px 24px;
+            background: linear-gradient(180deg, var(--purple-mist) 0%, var(--cream) 100%);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .family-block {
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
+        }
+        .family-block:last-child { margin-bottom: 0; }
+
+        .family-block h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--copper);
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .family-block p {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--purple-deep);
+            line-height: 1.7;
+        }
+
+        .inner-ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--purple-mid);
+            display: block;
+            margin: 4px 0;
+        }
+
+        /* ── COUNTDOWN: CIELO NOCTURNO ── */
+        .countdown-section {
+            position: relative;
+            padding: 55px 20px;
+            text-align: center;
+            overflow: hidden;
+            background: var(--purple-night);
+        }
+
+        .countdown-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                url('https://images.unsplash.com/photo-1419242902214-272b31f0b9b0?w=900&q=80') center/cover;
+            opacity: 0.25;
+        }
+
+        .countdown-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(26,10,46,0.8), rgba(45,20,84,0.9));
+        }
+
+        .countdown-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--lavender);
+            margin-bottom: 30px;
+            letter-spacing: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .flex-timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timer-box-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(196,160,224,0.25);
+            padding: 14px 10px;
+            border-radius: 12px;
+            min-width: 72px;
+            backdrop-filter: blur(8px);
+        }
+
+        .timer-box-card data {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--cream);
+            display: block;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .timer-box-card label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--purple-soft);
+        }
+
+        /* ── TARJETAS VAQUERAS ELEGANTES ── */
+        .logistics-section {
+            padding: 55px 22px;
+            background: var(--cream);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cowboy-luxury-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px 24px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            border-left: 4px solid var(--purple-mid);
+            overflow: hidden;
+        }
+
+        .cowboy-luxury-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 80px; height: 80px;
+            background: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=60') center/cover;
+            opacity: 0.06;
+            border-radius: 0 20px 0 80px;
+        }
+
+        .card-western-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 14px;
+            opacity: 0.8;
+        }
+
+        .card-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--purple-royal);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .card-badge-time {
+            display: inline-block;
+            background: var(--purple-mist);
+            color: var(--purple-royal);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 6px 22px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+        }
+
+        .card-subtitle-venue {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--copper);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card-text-address {
+            font-size: 0.84rem;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .btn-luxury-action {
+            display: inline-block;
+            background: var(--purple-royal);
+            color: white;
+            text-decoration: none;
+            padding: 13px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--rose-gold);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-luxury-action:hover {
+            background: var(--purple-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(90,45,130,0.3);
+        }
+
+        /* Dress code — colores para invitados (sin morados) */
+        .dress-code-note {
+            background: var(--purple-mist);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            font-size: 0.82rem;
+            color: var(--purple-deep);
+            line-height: 1.5;
+        }
+
+        .dress-code-note strong {
+            color: var(--copper);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .color-palette-flex {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .circle-palette-item {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+            position: relative;
+        }
+
+        .circle-palette-item::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.45rem;
+            color: #999;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── RSVP ── */
+        .rsvp-section {
+            padding: 55px 24px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--cream), var(--purple-mist));
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .rsvp-section .card-main-title {
+            margin-bottom: 10px;
+        }
+
+        .btn-rsvp-gold {
+            display: block;
+            background: linear-gradient(135deg, var(--purple-royal), var(--purple-mid));
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 20px rgba(90,45,130,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-rsvp-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(90,45,130,0.4);
+        }
+
+        .footer-western {
+            margin-top: 30px;
+            opacity: 0.5;
+        }
+
+        .footer-western svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        #yt-player-wrap {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            bottom: -300px;
+            left: -300px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="bg-animation-layer" id="bg-animation-layer" aria-hidden="true"></div>
+
+    <div id="yt-player-wrap" aria-hidden="true">
+        <div id="yt-player"></div>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-section">
+        <div class="hero-bg-image"></div>
+        <div class="hero-overlay"></div>
+        <div class="stars-layer" id="stars-layer"></div>
+        <div class="western-decor-layer" id="decor-hero"></div>
+
+        <svg class="desert-silhouette" viewBox="0 0 450 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,120 L0,80 Q30,70 60,85 Q90,60 120,75 Q150,50 180,70 Q210,45 240,65 Q270,40 300,60 Q330,35 360,55 Q390,30 420,50 Q435,45 450,55 L450,120 Z" fill="#1a0a2e"/>
+            <ellipse cx="60" cy="70" rx="8" ry="25" fill="#1a0a2e"/>
+            <rect x="56" y="55" width="8" height="30" rx="4" fill="#1a0a2e"/>
+            <rect x="46" y="48" width="6" height="14" rx="3" fill="#1a0a2e"/>
+            <rect x="68" y="52" width="6" height="10" rx="3" fill="#1a0a2e"/>
+            <ellipse cx="380" cy="65" rx="7" ry="22" fill="#1a0a2e"/>
+            <rect x="377" y="52" width="6" height="26" rx="3" fill="#1a0a2e"/>
+            <rect x="368" y="46" width="5" height="12" rx="2.5" fill="#1a0a2e"/>
+        </svg>
+
+        <div class="hero-content">
+            <div class="rope-frame">
+                <svg class="horseshoe-accent" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 18 C8 6 40 6 40 18 C40 30 30 38 24 38 C18 38 8 30 8 18Z" stroke="#c9a66b" stroke-width="2.5" fill="none"/>
+                    <circle cx="14" cy="14" r="2.5" fill="#c9a66b"/>
+                    <circle cx="34" cy="14" r="2.5" fill="#c9a66b"/>
+                    <circle cx="14" cy="28" r="2.5" fill="#c9a66b"/>
+                    <circle cx="34" cy="28" r="2.5" fill="#c9a66b"/>
+                </svg>
+
+                <p class="intro-text reveal">Con amor te invito a celebrar </p>
+                <h1 class="name-glitter reveal">Gabriela</h1>
+                <p class="subtitle western-title reveal">Western o Texano</p>
+                <p class="hero-tagline reveal">Mis XV Años </p>
+
+                <div class="premium-player reveal">
+                    <button class="player-btn-play" onclick="toggleMusic()" aria-label="Reproducir música">
+                        <svg id="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="#1a0a2e">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    <div class="player-info-box">
+                        <p id="player-status">Toca para escuchar</p>
+                        <h4>Love Me Again · V</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <svg class="rope-divider" viewBox="0 0 450 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,14 Q8,8 16,14 Q24,20 32,14 Q40,8 48,14 Q56,20 64,14 Q72,8 80,14 Q88,20 96,14 Q104,8 112,14 Q120,20 128,14 Q136,8 144,14 Q152,20 160,14 Q168,8 176,14 Q184,20 192,14 Q200,8 208,14 Q216,20 224,14 Q232,8 240,14 Q248,20 256,14 Q264,8 272,14 Q280,20 288,14 Q296,8 304,14 Q312,20 320,14 Q328,8 336,14 Q344,20 352,14 Q360,8 368,14 Q376,20 384,14 Q392,8 400,14 Q408,20 416,14 Q424,8 432,14 Q440,20 450,14" fill="none" stroke="#c9a66b" stroke-width="2.5"/>
+    </svg>
+
+    <!-- ═══ FECHA ═══ -->
+    <section class="date-section section-with-texture">
+        <div class="western-decor-layer" id="decor-date"></div>
+        <svg class="section-ornament" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5,15 L25,15 M35,15 L55,15 M30,5 L30,25" stroke="#8b5fbf" stroke-width="1.5"/>
+            <circle cx="30" cy="15" r="6" stroke="#c9a66b" stroke-width="1.5" fill="none"/>
+        </svg>
+        <h2 class="section-title-handwritten reveal">El Gran Día</h2>
+       
+        <div class="chic-date-container reveal">
+            <div class="date-element-side western-title">Sábado</div>
+            <div class="date-element-center">22</div>
+            <div class="date-element-side western-title">Agosto</div>
+        </div>
+
+        <div class="premium-calendar reveal">
+            <div class="calendar-header-month">Agosto 2026</div>
+            <div class="calendar-grid-layout">
+                <div class="day-headline">D</div><div class="day-headline">L</div><div class="day-headline">M</div>
+                <div class="day-headline">M</div><div class="day-headline">J</div><div class="day-headline">V</div>
+                <div class="day-headline">S</div>
+                <div></div><div></div><div></div><div></div><div></div><div></div>
+                <div class="grid-cell-day">1</div>
+                <div class="grid-cell-day">2</div><div class="grid-cell-day">3</div><div class="grid-cell-day">4</div><div class="grid-cell-day">5</div><div class="grid-cell-day">6</div><div class="grid-cell-day">7</div><div class="grid-cell-day">8</div>
+                <div class="grid-cell-day">9</div><div class="grid-cell-day">10</div><div class="grid-cell-day">11</div><div class="grid-cell-day">12</div><div class="grid-cell-day">13</div><div class="grid-cell-day">14</div><div class="grid-cell-day">15</div>
+                <div class="grid-cell-day">16</div><div class="grid-cell-day">17</div><div class="grid-cell-day">18</div><div class="grid-cell-day">19</div><div class="grid-cell-day">20</div><div class="grid-cell-day">21</div>
+                <div class="grid-cell-day marked-date"><span>22</span></div>
+                <div class="grid-cell-day">23</div><div class="grid-cell-day">24</div><div class="grid-cell-day">25</div><div class="grid-cell-day">26</div><div class="grid-cell-day">27</div><div class="grid-cell-day">28</div><div class="grid-cell-day">29</div>
+                <div class="grid-cell-day">30</div><div class="grid-cell-day">31</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAMILIA ═══ -->
+    <section class="family-section">
+        <div class="western-decor-layer" id="decor-family"></div>
+        <div class="family-block reveal">
+            <h3>Mis Padres</h3>
+            <p>Maciel Jimenez Cruz <span class="inner-ampersand">&amp;</span> Flor de Maria Ramirez Orantes</p>
+        </div>
+        <div class="family-block reveal">
+            <h3>Mis Padrinos</h3>
+            <p>Dulce María Fernández <span class="inner-ampersand">&amp;</span> Luis Henning Argüello</p>
+        </div>
+    </section>
+
+    <!-- ═══ COUNTDOWN ═══ -->
+    <section class="countdown-section reveal">
+        <div class="western-decor-layer" id="decor-countdown"></div>
+        <div class="countdown-bg"></div>
+        <div class="countdown-overlay"></div>
+        <h2>Faltan</h2>
+        <div class="flex-timer">
+            <div class="timer-box-card"><data id="days">00</data><label>Días</label></div>
+            <div class="timer-box-card"><data id="hours">00</data><label>Hrs</label></div>
+            <div class="timer-box-card"><data id="minutes">00</data><label>Min</label></div>
+            <div class="timer-box-card"><data id="seconds">00</data><label>Seg</label></div>
+        </div>
+    </section>
+
+    <!-- ═══ EVENTOS ═══ -->
+    <section class="logistics-section section-with-texture">
+        <div class="western-decor-layer" id="decor-logistics"></div>
+
+        <div class="cowboy-luxury-card reveal">
+            <svg class="card-western-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 6 L10 18 V40 H38 V18 Z" stroke="#8b5fbf" stroke-width="2" fill="none"/>
+                <path d="M24 6 V14 M20 10 H28" stroke="#c9a66b" stroke-width="2"/>
+                <rect x="20" y="28" width="8" height="12" fill="#8b5fbf" opacity="0.3"/>
+                <circle cx="24" cy="22" r="4" stroke="#8b5fbf" stroke-width="1.5" fill="none"/>
+            </svg>
+            <h2 class="card-main-title">Ceremonia</h2>
+            <div class="card-badge-time">5:00 PM</div>
+            <p class="card-subtitle-venue">Parroquia de Esquipulas</p>
+            <p class="card-text-address">Calle Primera Ote., Fraylescano, 30470 <br>Villaflores, Chis.</p>
+            <a href="https://maps.app.goo.gl/kSCmLb1VVxfQAo1e8" target="_blank" rel="noopener noreferrer" class="btn-luxury-action">Ver Ubicación</a>
+        </div>
+
+        <div class="cowboy-luxury-card reveal">
+            <svg class="card-western-icon" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 38 L12 20 L20 30 L28 14 L36 26 L44 10 L52 24 L60 18" stroke="#8b5fbf" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <rect x="2" y="36" width="60" height="8" rx="2" fill="#c9a66b" opacity="0.3"/>
+            </svg>
+            <h2 class="card-main-title">Recepción</h2>
+            <div class="card-badge-time">6:00 PM</div>
+            <p class="card-subtitle-venue">Salon Quinta Fatima</p>
+            <p class="card-text-address">Libramiento Nte. 600, El Mirador, 30476 <br>Villaflores, Chis.</p>
+            <a href="https://maps.app.goo.gl/7H9es5rr32jQdpNn6" target="_blank" rel="noopener noreferrer" class="btn-luxury-action">Ver Ubicación</a>
+        </div>
+
+        <div class="cowboy-luxury-card reveal">
+            <svg class="card-western-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="18" width="28" height="22" rx="3" stroke="#8b5fbf" stroke-width="2" fill="none"/>
+                <path d="M10 24 H38" stroke="#8b5fbf" stroke-width="1.5"/>
+                <path d="M24 18 V12 Q24 6 30 6 Q36 6 36 12" stroke="#c9a66b" stroke-width="2" fill="none"/>
+            </svg>
+            <h2 class="card-main-title">Regalos</h2>
+            <p class="card-text-address" style="font-weight:500; font-size:0.9rem;">Su presencia es mi mayor regalo, pero si desea otorgarme un detalle, este puede ser en efectivo.</p>
+            <p class="card-subtitle-venue" style="margin-top:12px; margin-bottom:0;">Lluvia de Sobres</p>
+        </div>
+
+        <div class="cowboy-luxury-card reveal">
+            <svg class="card-western-icon" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="32" cy="32" rx="28" ry="6" fill="#c9a66b" opacity="0.4"/>
+                <path d="M16 32 Q32 6 48 32 Z" fill="#9a6b45" opacity="0.5"/>
+            </svg>
+            <h2 class="card-main-title">Dress Code</h2>
+            <p class="card-subtitle-venue">Western o Texano</p>
+
+            <div class="dress-code-note">
+                <strong>Colores reservados para la quinceañera</strong>
+              
+            </div>
+
+            
+            <div class="color-palette-flex">
+                <div class="circle-palette-item" style="background:#904bf0;" ></div>
+                <div class="circle-palette-item" style="background:#7548c8;"></div>
+                <div class="circle-palette-item" style="background:#a559ec;" ></div>
+                <div class="circle-palette-item" style="background:#8535e0;" ></div>
+                <div class="circle-palette-item" style="background:#c197f4;" ></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ RSVP ═══ -->
+    <section class="rsvp-section reveal">
+        <div class="western-decor-layer" id="decor-rsvp"></div>
+        <h2 class="card-main-title">Confirmación</h2>
+        <p class="card-text-address" style="font-size:0.9rem; margin-bottom:28px;">Por favor, confirma tu asistencia</p>
+        <a href="https://wa.me/529652138105?text=%C2%A1Hola%21%20Con%20mucho%20cari%C3%B1o%20confirmo%20mi%20asistencia%20a%20los%20XV%20A%C3%B1os%20Western%20de%20Gabriela%2C%20el%20s%C3%A1bado%2022%20de%20agosto%20de%202026.%20%C2%A1Estar%C3%A9%20ah%C3%AD%20para%20celebrar%20contigo%20este%20d%C3%ADa%20tan%20especial%21" target="_blank" rel="noopener noreferrer" class="btn-rsvp-gold">CONFIRMAR POR WHATSAPP</a>
+        
+
+        <div class="footer-western">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 4 L28 16 L40 16 L30 24 L34 38 L24 30 L14 38 L18 24 L8 16 L20 16 Z" stroke="#8b5fbf" stroke-width="1.5" fill="none"/>
+            </svg>
+        </div>
+    </section>
+</div>
+
+<script>
+    // Reveal al scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ── Iconos vaqueros transparentes (SVG) ──
+    const GLYPHS = {
+        cactus: `<svg viewBox="0 0 48 80" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="30" width="8" height="50" rx="4" fill="currentColor"/><rect x="10" y="18" width="7" height="24" rx="3.5" fill="currentColor"/><rect x="31" y="24" width="7" height="18" rx="3.5" fill="currentColor"/><rect x="4" y="18" width="13" height="6" rx="3" fill="currentColor"/><rect x="31" y="24" width="13" height="6" rx="3" fill="currentColor"/></svg>`,
+        cactusSmall: `<svg viewBox="0 0 32 56" xmlns="http://www.w3.org/2000/svg"><rect x="13" y="20" width="6" height="36" rx="3" fill="currentColor"/><rect x="6" y="14" width="5" height="14" rx="2.5" fill="currentColor"/><rect x="21" y="16" width="5" height="12" rx="2.5" fill="currentColor"/></svg>`,
+        hat: `<svg viewBox="0 0 64 44" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="36" rx="30" ry="7" fill="currentColor"/><path d="M14 36 Q32 8 50 36 Z" fill="currentColor" opacity="0.85"/><rect x="28" y="33" width="8" height="6" rx="2" fill="currentColor" opacity="0.6"/></svg>`,
+        horseshoe: `<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M10 18 C10 6 38 6 38 18 C38 30 28 38 24 38 C20 38 10 30 10 18 Z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="14" r="2.5" fill="currentColor"/><circle cx="32" cy="14" r="2.5" fill="currentColor"/><circle cx="16" cy="28" r="2.5" fill="currentColor"/><circle cx="32" cy="28" r="2.5" fill="currentColor"/></svg>`,
+        star: `<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4 L28 17 L42 17 L31 26 L35 40 L24 32 L13 40 L17 26 L6 17 L20 17 Z" fill="currentColor"/></svg>`,
+        boot: `<svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg"><path d="M16 4 H32 V28 C32 36 28 40 24 40 H14 L10 52 H38 L34 40 H28 C22 40 16 34 16 28 Z" fill="currentColor" opacity="0.9"/></svg>`,
+        lasso: `<svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 4"/><path d="M46 28 Q52 20 46 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`
+    };
+
+    function placeGlyph(container, type, opts) {
+        const el = document.createElement('div');
+        el.className = 'western-glyph' + (opts.colorClass ? ' ' + opts.colorClass : '') + (opts.anim ? ' ' + opts.anim : '');
+        el.innerHTML = GLYPHS[type];
+        el.style.width = opts.w;
+        if (opts.top)    el.style.top = opts.top;
+        if (opts.bottom) el.style.bottom = opts.bottom;
+        if (opts.left)   el.style.left = opts.left;
+        if (opts.right)  el.style.right = opts.right;
+        if (opts.opacity) el.style.opacity = opts.opacity;
+        if (opts.delay)  el.style.animationDelay = opts.delay;
+        if (opts.rotate) el.style.transform = 'rotate(' + opts.rotate + 'deg)';
+        container.appendChild(el);
+    }
+
+    // Decoraciones fijas por sección
+    const decorHero = document.getElementById('decor-hero');
+    [
+        { type: 'cactus',     w: '85px',  bottom: '22%', left: '-8%',  anim: 'sway-slow', colorClass: 'light', delay: '0s' },
+        { type: 'cactus',     w: '65px',  bottom: '25%', right: '-5%', anim: 'sway-reverse', colorClass: 'light', delay: '1.2s' },
+        { type: 'cactusSmall',w: '45px',  bottom: '30%', left: '12%', anim: 'sway', colorClass: 'cream', delay: '0.5s', opacity: '0.15' },
+        { type: 'hat',        w: '58px',  top: '8%',    right: '6%',  anim: 'drift', colorClass: 'gold', delay: '0s' },
+        { type: 'hat',        w: '42px',  top: '18%',   left: '4%',   anim: 'drift', colorClass: 'gold', delay: '2s', rotate: '-15' },
+        { type: 'horseshoe',  w: '38px',  top: '35%',   right: '10%', anim: 'sway', colorClass: 'light', delay: '1s' },
+        { type: 'star',       w: '28px',  top: '10%',   left: '18%',  anim: 'drift', colorClass: 'cream', delay: '0.8s' },
+        { type: 'star',       w: '22px',  top: '28%',   right: '22%', anim: 'drift', colorClass: 'cream', delay: '1.5s' }
+    ].forEach(g => placeGlyph(decorHero, g.type, g));
+
+    const decorDate = document.getElementById('decor-date');
+    [
+        { type: 'cactus',     w: '72px', bottom: '0',   left: '-10%', anim: 'sway-slow', delay: '0s' },
+        { type: 'cactusSmall',w: '50px', bottom: '5%',  right: '2%',  anim: 'sway-reverse', delay: '1s' },
+        { type: 'horseshoe',  w: '44px', top: '8%',    right: '-4%', anim: 'sway', colorClass: 'gold', delay: '0.5s', rotate: '20' },
+        { type: 'hat',        w: '52px', top: '12%',   left: '-6%',  anim: 'drift', colorClass: 'gold', delay: '1.2s', rotate: '-10' },
+        { type: 'star',       w: '26px', top: '40%',   left: '8%',   anim: 'drift', delay: '0.3s' }
+    ].forEach(g => placeGlyph(decorDate, g.type, g));
+
+    const decorFamily = document.getElementById('decor-family');
+    [
+        { type: 'horseshoe',  w: '40px', top: '10%',  left: '3%',  anim: 'sway', colorClass: 'gold', rotate: '-20' },
+        { type: 'horseshoe',  w: '36px', bottom: '15%', right: '5%', anim: 'sway-reverse', colorClass: 'gold', rotate: '15' },
+        { type: 'star',       w: '30px', top: '20%',  right: '8%', anim: 'drift' },
+        { type: 'star',       w: '24px', bottom: '25%', left: '10%', anim: 'drift', delay: '1s' },
+        { type: 'lasso',      w: '55px', top: '5%',   right: '-8%', anim: 'sway-slow', opacity: '0.08' },
+        { type: 'cactusSmall',w: '48px', bottom: '0', left: '-6%', anim: 'sway', delay: '0.6s' }
+    ].forEach(g => placeGlyph(decorFamily, g.type, g));
+
+    const decorCountdown = document.getElementById('decor-countdown');
+    [
+        { type: 'cactus',     w: '80px', bottom: '-5%', left: '-12%', anim: 'sway-slow', colorClass: 'light', opacity: '0.12' },
+        { type: 'cactus',     w: '60px', bottom: '-3%', right: '-8%', anim: 'sway-reverse', colorClass: 'light', opacity: '0.1' },
+        { type: 'star',       w: '32px', top: '15%',  left: '10%',  anim: 'drift', colorClass: 'light' },
+        { type: 'star',       w: '24px', top: '25%',  right: '12%', anim: 'drift', colorClass: 'light', delay: '1.5s' },
+        { type: 'horseshoe',  w: '42px', top: '8%',   right: '5%',  anim: 'sway', colorClass: 'light', rotate: '10' }
+    ].forEach(g => placeGlyph(decorCountdown, g.type, g));
+
+    const decorLogistics = document.getElementById('decor-logistics');
+    [
+        { type: 'cactus',     w: '68px', top: '8%',    left: '-10%', anim: 'sway-slow' },
+        { type: 'cactusSmall',w: '45px', bottom: '12%', right: '-4%', anim: 'sway-reverse', delay: '0.8s' },
+        { type: 'hat',        w: '48px', top: '35%',   right: '-6%', anim: 'drift', colorClass: 'gold', rotate: '12' },
+        { type: 'boot',       w: '40px', bottom: '20%', left: '2%',  anim: 'sway', colorClass: 'gold', rotate: '-8' },
+        { type: 'horseshoe',  w: '38px', top: '55%',   left: '-3%',  anim: 'sway', colorClass: 'gold', rotate: '-25' },
+        { type: 'star',       w: '28px', top: '70%',   right: '6%',  anim: 'drift', delay: '1s' },
+        { type: 'lasso',      w: '50px', bottom: '5%', right: '10%', anim: 'sway-slow', opacity: '0.09' }
+    ].forEach(g => placeGlyph(decorLogistics, g.type, g));
+
+    const decorRsvp = document.getElementById('decor-rsvp');
+    [
+        { type: 'hat',        w: '55px', top: '5%',    left: '-5%',  anim: 'drift', colorClass: 'gold', rotate: '-18' },
+        { type: 'cactus',     w: '62px', bottom: '0',  right: '-10%', anim: 'sway-slow', delay: '0.5s' },
+        { type: 'boot',       w: '44px', bottom: '15%', left: '5%', anim: 'sway', colorClass: 'gold', rotate: '10' },
+        { type: 'horseshoe',  w: '40px', top: '20%',   right: '4%',  anim: 'sway-reverse', colorClass: 'gold' },
+        { type: 'star',       w: '26px', top: '40%',   left: '12%',  anim: 'drift', delay: '0.7s' }
+    ].forEach(g => placeGlyph(decorRsvp, g.type, g));
+
+    // Estrellas en el hero
+    const starsLayer = document.getElementById('stars-layer');
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 60 + '%';
+        star.style.animationDuration = (2 + Math.random() * 4) + 's';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        if (Math.random() > 0.7) {
+            star.style.width = '3px';
+            star.style.height = '3px';
+        }
+        starsLayer.appendChild(star);
+    }
+
+    // Partículas de polvo morado + siluetas vaqueras flotantes
+    const bgLayer = document.getElementById('bg-animation-layer');
+
+    function spawnDust() {
+        const p = document.createElement('div');
+        p.className = 'dust-particle';
+        const size = 3 + Math.random() * 5;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (12 + Math.random() * 10) + 's';
+        p.style.animationDelay = (Math.random() * 2) + 's';
+        bgLayer.appendChild(p);
+        setTimeout(() => p.remove(), 24000);
+    }
+
+    const westernSilhouettes = [
+        GLYPHS.cactus,
+        GLYPHS.cactusSmall,
+        GLYPHS.hat,
+        GLYPHS.horseshoe,
+        GLYPHS.star,
+        GLYPHS.boot
+    ];
+
+    function spawnWestern() {
+        const el = document.createElement('div');
+        el.className = 'float-western';
+        el.style.color = Math.random() > 0.5 ? '#5a2d82' : '#9a6b45';
+        el.innerHTML = westernSilhouettes[Math.floor(Math.random() * westernSilhouettes.length)];
+        el.style.left = Math.random() * 85 + '%';
+        el.style.width = (28 + Math.random() * 22) + 'px';
+        el.style.animationDuration = (20 + Math.random() * 14) + 's';
+        el.style.animationDelay = (Math.random() * 4) + 's';
+        bgLayer.appendChild(el);
+        setTimeout(() => el.remove(), 36000);
+    }
+
+    setInterval(spawnDust, 800);
+    setInterval(spawnWestern, 3500);
+    for (let i = 0; i < 8; i++) setTimeout(spawnDust, i * 300);
+    for (let i = 0; i < 6; i++) setTimeout(spawnWestern, i * 800);
+
+    // Reproductor YouTube — Love Me Again (V)
+    const YT_VIDEO_ID = 'HYzyRHAHJl8';
+    let ytPlayer = null;
+    let ytReady = false;
+    let wantsPlay = false;
+    let musicPlaying = false;
+    const playIcon = document.getElementById('play-icon');
+    const playerStatus = document.getElementById('player-status');
+
+    function setPlayerUI(playing) {
+        musicPlaying = playing;
+        if (playing) {
+            playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+            playerStatus.innerText = 'Reproduciendo';
+        } else {
+            playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            playerStatus.innerText = 'Toca para escuchar';
+        }
+    }
+
+    function tryPlay() {
+        if (!ytReady || !ytPlayer) {
+            wantsPlay = true;
+            playerStatus.innerText = 'Cargando canción...';
+            return;
+        }
+        ytPlayer.playVideo();
+    }
+
+    function initYTPlayer() {
+        if (ytPlayer) return;
+        ytPlayer = new YT.Player('yt-player', {
+            width: '200',
+            height: '200',
+            videoId: YT_VIDEO_ID,
+            playerVars: {
+                autoplay: 0,
+                controls: 0,
+                disablekb: 1,
+                fs: 0,
+                loop: 1,
+                playlist: YT_VIDEO_ID,
+                rel: 0,
+                playsinline: 1,
+                origin: window.location.origin
+            },
+            events: {
+                onReady: () => {
+                    ytReady = true;
+                    if (wantsPlay) {
+                        wantsPlay = false;
+                        ytPlayer.playVideo();
+                    }
+                },
+                onStateChange: (e) => {
+                    if (e.data === YT.PlayerState.PLAYING) setPlayerUI(true);
+                    if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) setPlayerUI(false);
+                },
+                onError: () => {
+                    playerStatus.innerText = 'Error al cargar — revisa internet';
+                    wantsPlay = false;
+                }
+            }
+        });
+    }
+
+    window.onYouTubeIframeAPIReady = initYTPlayer;
+
+    if (window.YT && window.YT.Player) {
+        initYTPlayer();
+    } else if (!document.getElementById('yt-api-script')) {
+        const tag = document.createElement('script');
+        tag.id = 'yt-api-script';
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+    }
+
+    function toggleMusic() {
+        if (!ytReady || !ytPlayer) {
+            wantsPlay = true;
+            tryPlay();
+            return;
+        }
+        const state = ytPlayer.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+            ytPlayer.pauseVideo();
+        } else {
+            ytPlayer.playVideo();
+        }
+    }
+
+    window.toggleMusic = toggleMusic;
+
+    // Cuenta regresiva
+    const targetDate = new Date('August 22, 2026 17:00:00').getTime();
+    function runClock() {
+        const diff = targetDate - Date.now();
+        if (diff < 0) return;
+        document.getElementById('days').innerText    = String(Math.floor(diff / 86400000)).padStart(2, '0');
+        document.getElementById('hours').innerText   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+    }
+    setInterval(runClock, 1000);
+    runClock();
+</script>
+</body>
+</html>
