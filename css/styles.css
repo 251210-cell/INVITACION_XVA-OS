@@ -1,0 +1,506 @@
+
+/* --- PALETA DE COLORES INTACTA --- */
+:root {
+    --bg-light: #F4EEF9; 
+    --purple-1: #E8DBF7; 
+    --purple-2: #D6BEEC; 
+    --purple-3: #A97CD3; 
+    --purple-4: #6F3FA3; 
+    --purple-dark: #351259; 
+    --gold-light: #F1D97A;
+    --gold-dark: #946B15;
+    --gold-gradient: linear-gradient(45deg, #A67C1E, #F1D97A, #B89332, #FDF1A9, #946B15);
+    --purple-gradient: linear-gradient(180deg, #351259 0%, #6F3FA3 40%, #D6BEEC 100%);
+    --shadow: 0 12px 30px rgba(53, 18, 89, 0.12);
+}
+
+/* --- RESET Y SOPORTE DE CENTRADO (Sin Flex en Body) --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--purple-dark);
+    overflow-x: hidden;
+}
+
+.main-wrapper {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0,0,0,0.25);
+    background: var(--bg-light);
+    position: relative;
+}
+
+.western-title {
+    font-family: 'Rye', serif;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+/* --- ANIMACIONES ELEGANTES --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+    transition: all 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.floating-petal {
+    position: absolute;
+    opacity: 0.3;
+    pointer-events: none;
+    animation: elegantFloat infinite linear;
+    z-index: 5;
+}
+
+@keyframes elegantFloat {
+    0% { transform: translateY(105vh) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-5vh) translateX(60px) rotate(180deg); opacity: 0; }
+}
+
+/* --- SECCIÓN 1: PORTADA EN ARCO PREMIUM --- */
+.hero-section {
+    padding: 40px 20px;
+    background: var(--purple-gradient);
+    position: relative;
+    text-align: center;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Marco de arco tipo herradura de alta gama */
+.arch-frame {
+    border: 2px solid var(--gold-light);
+    outline: 5px solid rgba(241, 217, 122, 0.2);
+    border-radius: 200px 200px 20px 20px;
+    padding: 60px 20px 40px 20px;
+    width: 100%;
+    height: 100%;
+    background: rgba(53, 18, 89, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+}
+
+/* Estrella de Sheriff Rediseñada (Giro Lento y Fino) */
+.sheriff-badge {
+    width: 95px;
+    height: 95px;
+    margin-bottom: 25px;
+    animation: slowSpin 25s infinite linear;
+    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.3));
+}
+
+@keyframes slowSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hero-section .intro-text {
+    font-size: 0.85rem;
+    color: var(--purple-1);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.hero-section .name-glitter {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5.8rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 10px;
+    filter: drop-shadow(0px 3px 4px rgba(0,0,0,0.4));
+}
+
+.hero-section .subtitle {
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+}
+
+/* Reproductor Minimalista de Lujo */
+.premium-player {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    padding: 10px 20px;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.player-btn-play {
+    background: var(--gold-gradient);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(148,107,21,0.4);
+}
+
+.player-info-box {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.player-info-box p {
+    font-size: 0.65rem;
+    color: var(--purple-2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.player-info-box h4 {
+    font-size: 0.8rem;
+    color: white;
+    font-weight: 500;
+}
+
+/* --- SECCIÓN 2: EL GRAN DÍA (DISEÑO ASIMÉTRICO) --- */
+.date-section {
+    padding: 70px 25px;
+    text-align: center;
+    background-color: var(--bg-light);
+    position: relative;
+}
+
+.section-title-handwritten {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.2rem;
+    color: var(--purple-dark);
+    margin-bottom: 30px;
+}
+
+.chic-date-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.date-element-side {
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: var(--purple-4);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gold-dark);
+    padding-bottom: 5px;
+    width: 90px;
+}
+
+.date-element-center {
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+    line-height: 1;
+    font-family: 'Rye', serif;
+    text-shadow: 3px 3px 0px var(--purple-1);
+}
+
+/* Calendario Boutique con sombra flotante */
+.premium-calendar {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--purple-1);
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.calendar-header-month {
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--purple-dark);
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.calendar-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px 5px;
+    font-size: 0.85rem;
+}
+
+.day-headline {
+    font-weight: 700;
+    color: var(--purple-3);
+    padding-bottom: 8px;
+}
+
+.grid-cell-day {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--purple-dark);
+    position: relative;
+}
+
+/* Evento Marcado con Lazo/Herradura Minimalista */
+.grid-cell-day.marked-date {
+    color: white;
+    font-weight: 700;
+}
+
+.grid-cell-day.marked-date::before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background: var(--gold-gradient);
+    border-radius: 50% 50% 0 50%;
+    transform: rotate(-45deg);
+    z-index: 0;
+    box-shadow: 0 4px 8px rgba(148,107,21,0.3);
+}
+
+.grid-cell-day.marked-date span {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- SECCIÓN 3: PADRES Y PADRINOS --- */
+.family-section {
+    padding: 60px 20px;
+    background: white;
+    text-align: center;
+    border-top: 1px solid var(--purple-1);
+}
+
+.family-block h3 {
+    font-size: 1.6rem;
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.family-block p {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--purple-dark);
+    line-height: 1.6;
+}
+
+.inner-ampersand {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--purple-3);
+    display: block;
+    margin: 2px 0;
+}
+
+/* --- LIENZO DE CUENTA REGRESIVA --- */
+.countdown-section {
+    background: var(--purple-dark);
+    color: white;
+    padding: 45px 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+}
+
+.countdown-section h2 {
+    font-size: 1.8rem;
+    color: var(--gold-light);
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+}
+
+.flex-timer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.timer-box-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(241, 217, 122, 0.3);
+    padding: 12px 8px;
+    border-radius: 12px;
+    min-width: 75px;
+    backdrop-filter: blur(5px);
+}
+
+.timer-box-card data {
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: white;
+    display: block;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.timer-box-card label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--purple-2);
+    display: block;
+}
+
+/* --- SECCIÓN 4: TARJETAS CON COSTURA CHIC --- */
+.logistics-section {
+    padding: 60px 25px;
+}
+
+/* Tarjeta con Marco Flotante Vaquero */
+.cowboy-luxury-card {
+    background: white;
+    border-radius: 24px;
+    padding: 35px 25px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    position: relative;
+    text-align: center;
+    border: 1px solid rgba(111, 63, 163, 0.1);
+}
+
+/* Marco de costura interior de la tarjeta */
+.cowboy-luxury-card::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1.5px dashed var(--gold-dark);
+    border-radius: 16px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.card-embed-icon {
+    width: 55px;
+    height: 55px;
+    fill: var(--purple-4);
+    margin-bottom: 15px;
+}
+
+.card-main-title {
+    font-size: 2rem;
+    color: var(--purple-dark);
+    margin-bottom: 8px;
+}
+
+.card-badge-time {
+    background: var(--purple-1);
+    color: var(--purple-dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 6px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.card-subtitle-venue {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--gold-dark);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.card-text-address {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.btn-luxury-action {
+    display: inline-block;
+    background: var(--purple-dark);
+    color: white;
+    text-decoration: none;
+    padding: 14px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid var(--gold-light);
+    box-shadow: 0 4px 15px rgba(53,18,89,0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    min-height: 48px;
+}
+
+.btn-luxury-action:hover {
+    background: var(--gold-dark);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Muestras circulares de Dress Code */
+.color-palette-flex {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.circle-palette-item {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+/* --- SECCIÓN 5: RSVP ALTA GAMA --- */
+.rsvp-section {
+    padding: 60px 25px 90px;
+    text-align: center;
+    background: white;
+    border-top: 1px solid var(--purple-1);
+}
+
+.btn-rsvp-gold {
+    display: block;
+    background: var(--gold-gradient);
+    color: var(--purple-dark);
+    text-decoration: none;
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(148,107,21,0.25);
+    transition: transform 0.2s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-rsvp-gold:hover {
+    transform: scale(1.02);
+}
